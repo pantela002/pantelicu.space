@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Insurance Price Validator</title>
+  <title>Insurance Price Validator — pantelicu.space</title>
   <style>
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -11,44 +11,296 @@
       font-family: 'Segoe UI', sans-serif;
       background: #0f1117;
       color: #fafafa;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
+      min-height: 100vh;
     }
 
     header {
       background: #1a1d27;
-      padding: 14px 32px;
+      padding: 16px 40px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       border-bottom: 1px solid #2e3147;
     }
 
-    header h1 {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #ff4b4b;
-      letter-spacing: 0.5px;
+    header h1 { font-size: 1.15rem; font-weight: 600; color: #ff4b4b; }
+    header span { font-size: 0.85rem; color: #666; }
+
+    main {
+      display: flex;
+      gap: 0;
+      height: calc(100vh - 57px);
     }
 
-    header span {
-      font-size: 0.85rem;
-      color: #888;
-    }
-
-    iframe {
+    .panel {
       flex: 1;
-      width: 100%;
-      border: none;
+      padding: 28px 32px;
+      overflow-y: auto;
+      border-right: 1px solid #2e3147;
     }
+
+    .panel:last-child { border-right: none; }
+
+    h2 {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #aaa;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    pre {
+      background: #1a1d27;
+      border: 1px solid #2e3147;
+      border-radius: 8px;
+      padding: 16px;
+      font-size: 0.78rem;
+      line-height: 1.6;
+      overflow-x: auto;
+      color: #e0e0e0;
+    }
+
+    .input-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.78rem;
+      color: #888;
+      margin-bottom: 5px;
+    }
+
+    .input-group input {
+      width: 100%;
+      background: #1a1d27;
+      border: 1px solid #2e3147;
+      border-radius: 6px;
+      color: #fafafa;
+      padding: 8px 12px;
+      font-size: 0.9rem;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .input-group input:focus { border-color: #ff4b4b; }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background: #ff4b4b;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-bottom: 28px;
+    }
+
+    button:hover { background: #e03e3e; }
+
+    .output-section { display: none; }
+
+    .anchor-log {
+      background: #1a1d27;
+      border: 1px solid #2e3147;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 0.8rem;
+      font-family: monospace;
+      line-height: 1.8;
+      margin-bottom: 20px;
+      color: #ccc;
+      white-space: pre-wrap;
+    }
+
+    .result-json {
+      background: #1a1d27;
+      border: 1px solid #2e3147;
+      border-radius: 8px;
+      padding: 14px 16px;
+      font-size: 0.82rem;
+      font-family: monospace;
+      line-height: 1.7;
+      color: #98d8a0;
+      white-space: pre-wrap;
+    }
+
+    .section-title {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: #888;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      margin-bottom: 8px;
+    }
+
+    .divider { margin-bottom: 20px; }
   </style>
 </head>
 <body>
-  <header>
-    <h1>🛡️ Insurance Price Validator</h1>
-    <span>pantelicu.space</span>
-  </header>
-  <iframe src="http://localhost:8501" title="Insurance Price Validator App"></iframe>
+
+<header>
+  <h1>🛡️ Insurance Price Validator</h1>
+  <span>pantelicu.space</span>
+</header>
+
+<main>
+  <!-- LEFT: code -->
+  <div class="panel">
+    <h2>solution.py</h2>
+    <pre id="code-display">Loading...</pre>
+  </div>
+
+  <!-- RIGHT: input + output -->
+  <div class="panel">
+    <h2>Input</h2>
+
+    <div class="input-grid">
+      <div class="input-group">
+        <label>mtpl</label>
+        <input type="number" id="mtpl" value="400" step="10"/>
+      </div>
+      <div class="input-group">
+        <label>casco_100</label>
+        <input type="number" id="casco_100" value="780" step="10"/>
+      </div>
+      <div class="input-group">
+        <label>limited_casco_100</label>
+        <input type="number" id="limited_casco_100" value="850" step="10"/>
+      </div>
+      <div class="input-group">
+        <label>casco_200</label>
+        <input type="number" id="casco_200" value="950" step="10"/>
+      </div>
+      <div class="input-group">
+        <label>limited_casco_200</label>
+        <input type="number" id="limited_casco_200" value="900" step="10"/>
+      </div>
+      <div class="input-group">
+        <label>casco_500</label>
+        <input type="number" id="casco_500" value="800" step="10"/>
+      </div>
+      <div class="input-group">
+        <label>limited_casco_500</label>
+        <input type="number" id="limited_casco_500" value="700" step="10"/>
+      </div>
+    </div>
+
+    <button onclick="runValidator()">▶ Run Validator</button>
+
+    <div class="output-section" id="output">
+      <div class="divider">
+        <div class="section-title">Anchor Analysis</div>
+        <div class="anchor-log" id="anchor-log"></div>
+      </div>
+      <div>
+        <div class="section-title">Output</div>
+        <div class="result-json" id="result-json"></div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+// ── solution.py logic ported to JS ──────────────────────────────────────────
+
+const RATIOS = {
+  "casco_100":         [1.0000, 0.9100, 1.2000],
+  "casco_200":         [0.8500, 0.8300, 0.9000],
+  "casco_500":         [0.8000, 0.7800, 0.8200],
+  "limited_casco_100": [0.7500, 0.7300, 0.7700],
+  "limited_casco_200": [0.6375, 0.6100, 0.7200],
+  "limited_casco_500": [0.5625, 0.5000, 0.6000],
+  "mtpl":              [0.3600, 0.2600, 0.4600],
+};
+
+const LC_MTPL_TARGET = 9 / 5;
+const C_LC_TARGET = 12 / 9;
+
+function validateAndFix(prices) {
+  const fixed = { ...prices };
+  const issues = [];
+  let anchorLog = "";
+
+  let bestAnchor = null;
+  let minIssues = Infinity;
+  let minMSE = Infinity;
+
+  for (const anchor in RATIOS) {
+    const [exp, , ] = RATIOS[anchor];
+    const X = prices[anchor] / exp;
+
+    const candidateIssues = [];
+    const candidate = { ...prices };
+
+    for (const k in RATIOS) {
+      if (k === anchor) continue;
+      const [e, l, h] = RATIOS[k];
+      if (!(l * X <= prices[k] && prices[k] <= h * X)) {
+        candidateIssues.push(`${k} adjusted from ${prices[k]} to ${(e * X).toFixed(2)}`);
+        candidate[k] = e * X;
+      }
+    }
+
+    const lcMtpl = candidate["limited_casco_100"] / candidate["mtpl"];
+    const cLc   = candidate["casco_100"] / candidate["limited_casco_100"];
+    const mse   = ((lcMtpl - LC_MTPL_TARGET) ** 2 + (cLc - C_LC_TARGET) ** 2) / 2;
+
+    anchorLog += `Anchor=${anchor} (X=${X.toFixed(2)}): ${candidateIssues.length} issue(s), MSE=${mse.toFixed(4)}\n`;
+    candidateIssues.forEach(m => { anchorLog += `  - ${m}\n`; });
+
+    if (candidateIssues.length < minIssues ||
+        (candidateIssues.length === minIssues && mse < minMSE)) {
+      minIssues = candidateIssues.length;
+      minMSE = mse;
+      bestAnchor = anchor;
+    }
+  }
+
+  const X = prices[bestAnchor] / RATIOS[bestAnchor][0];
+  for (const k in RATIOS) {
+    if (k === bestAnchor) continue;
+    const [exp, lo, hi] = RATIOS[k];
+    if (!(lo * X <= prices[k] && prices[k] <= hi * X)) {
+      const old = fixed[k];
+      fixed[k] = parseFloat((exp * X).toFixed(2));
+      issues.push(`${k} adjusted from ${old} to ${fixed[k]} (anchor: ${bestAnchor}, X=${X.toFixed(2)})`);
+    }
+  }
+
+  return { fixed_prices: fixed, issues, anchorLog };
+}
+
+// ── UI ──────────────────────────────────────────────────────────────────────
+
+function runValidator() {
+  const keys = ["mtpl", "limited_casco_100", "limited_casco_200", "limited_casco_500",
+                "casco_100", "casco_200", "casco_500"];
+  const prices = {};
+  for (const k of keys) prices[k] = parseFloat(document.getElementById(k).value);
+
+  const { fixed_prices, issues, anchorLog } = validateAndFix(prices);
+
+  document.getElementById("anchor-log").textContent = anchorLog.trimEnd();
+  document.getElementById("result-json").textContent =
+    JSON.stringify({ fixed_prices, issues }, null, 2);
+  document.getElementById("output").style.display = "block";
+}
+
+// ── Load code display ────────────────────────────────────────────────────────
+
+fetch("solution.py")
+  .then(r => r.text())
+  .then(t => { document.getElementById("code-display").textContent = t; })
+  .catch(() => { document.getElementById("code-display").textContent = "Could not load solution.py"; });
+</script>
+
 </body>
 </html>
