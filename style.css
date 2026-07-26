@@ -278,6 +278,14 @@ ul { list-style: none; }
   max-width: 65ch;
 }
 
+.guide-link {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+}
+.guide-link:hover { text-decoration: underline; }
+
 .subsection-title {
   font-size: 1.1rem;
   font-weight: 700;
@@ -578,6 +586,89 @@ ul { list-style: none; }
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* gym guide page */
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-dim);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.88rem;
+  margin-bottom: 22px;
+}
+.back-link:hover { color: var(--accent); }
+
+.guide-hero { padding: 56px 24px 24px; }
+.guide-hero .bio { margin-bottom: 0; }
+
+.day-block { padding: 40px 24px; }
+
+.day-head { display: flex; align-items: baseline; gap: 12px; margin-bottom: 16px; }
+.day-head .day-emoji { font-size: 1.6rem; }
+
+.day-intro {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  color: var(--text-dim);
+  margin-bottom: 28px;
+  max-width: 80ch;
+}
+.day-intro strong { color: var(--text); }
+
+.exercise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 18px;
+}
+
+.exercise-card {
+  background: var(--bg-alt);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  text-decoration: none;
+  color: var(--text);
+  display: block;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+.exercise-card:hover { transform: translateY(-4px); border-color: var(--accent); }
+
+.exercise-thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--bg-raised);
+}
+.exercise-thumb::after {
+  content: "▶";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  color: #fff;
+  background: rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.exercise-card:hover .exercise-thumb::after { opacity: 1; }
+
+.exercise-info { padding: 14px 16px; }
+.exercise-name { font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; }
+.exercise-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.78rem;
+  color: var(--text-dim);
+}
+.exercise-sets { font-weight: 700; color: var(--accent); }
 
 /* responsive */
 @media (max-width: 860px) {

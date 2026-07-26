@@ -137,13 +137,32 @@
       lng: 20.4015235,
       desc: "Gym next to the Ninth Belgrade Gymnasium, Novi Beograd.",
     },
+    {
+      id: "university",
+      name: "School of Electrical Engineering",
+      label: "Where I study",
+      emoji: "🎓",
+      lat: 44.8057154,
+      lng: 20.4762358,
+      desc: "University of Belgrade — B.Sc. Electrical Engineering, Bulevar kralja Aleksandra 73.",
+    },
+    {
+      id: "hometown",
+      name: "Šabac",
+      label: "Where I'm from",
+      emoji: "🏡",
+      lat: 44.7571535,
+      lng: 19.6953972,
+      desc: "My hometown, western Serbia, on the Sava river.",
+    },
   ];
 
   const mapEl = document.getElementById("map");
   const listEl = document.getElementById("place-list");
+  if (!mapEl || !listEl) return;
   const markerById = {};
 
-  const map = L.map(mapEl, { scrollWheelZoom: false }).setView([44.812, 20.394], 12);
+  const map = L.map(mapEl, { scrollWheelZoom: false });
   L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     maxZoom: 19,
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
@@ -190,6 +209,11 @@
     });
     listEl.appendChild(li);
   });
+
+  map.fitBounds(
+    L.latLngBounds(PLACES.map((place) => [place.lat, place.lng])),
+    { padding: [28, 28] }
+  );
 
   // re-enable scroll zoom once the user actually interacts with the map
   map.on("click", () => map.scrollWheelZoom.enable());

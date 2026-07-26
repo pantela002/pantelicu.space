@@ -1,0 +1,107 @@
+<!-- ABOUTME: Push/Pull/Legs training guide page for pantelicu.space -->
+<!-- ABOUTME: Explains each training day and links a real video tutorial for every exercise -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Gym Guide — Push, Pull, Legs | Uroš Pantelić</title>
+<meta name="description" content="A full Push/Pull/Legs breakdown with a video tutorial for every exercise." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💪</text></svg>" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<div class="progress-bar" id="progress-bar"></div>
+
+<header class="site-header">
+  <nav class="nav container">
+    <a href="index.html" class="brand">UP</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#places">Places</a></li>
+      <li><a href="index.html#gym">Gym</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme" title="Toggle light/dark theme">
+      <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
+    </button>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="guide-hero container">
+    <a class="back-link" href="index.html#gym">← Back to weekly split</a>
+    <p class="eyebrow">Training guide</p>
+    <h1>Push, Pull, Legs — Explained</h1>
+    <p class="bio">
+      The breakdown behind my 6-day split: what each day trains and why, plus a real tutorial for every single
+      exercise. Push and pull are each merged from both my A/B variants below, so nothing's repeated twice.
+    </p>
+  </section>
+
+  <!-- PUSH -->
+  <section class="container day-block" id="push">
+    <div class="day-head"><span class="day-emoji">🏋️</span><h2 class="section-title">Push Day</h2></div>
+    <div class="day-intro">
+      <strong>What it trains:</strong> every muscle that presses weight <em>away</em> from your body — chest,
+      front &amp; side deltoids, and triceps. They all drive the same joint actions (shoulder flexion + elbow
+      extension), so bench presses, overhead presses, and dips all recruit the same muscle group from different
+      angles. Training them together in one session means you can go hard on all of them, then let the whole
+      group recover together before the next push day.
+    </div>
+    <div class="exercise-grid" id="push-grid"><!-- populated by script.js --></div>
+  </section>
+
+  <!-- PULL -->
+  <section class="container day-block" id="pull">
+    <div class="day-head"><span class="day-emoji">🧲</span><h2 class="section-title">Pull Day</h2></div>
+    <div class="day-intro">
+      <strong>What it trains:</strong> everything that pulls weight <em>toward</em> your body — lats, mid-back
+      (rhomboids/traps), rear delts, and biceps. Deadlifts and rows build the back's thickness and width, face
+      pulls and rear delt work balance out all the pressing from push day, and curls finish off the biceps —
+      which are already pre-fatigued as a secondary mover on every row and pull-up anyway.
+    </div>
+    <div class="exercise-grid" id="pull-grid"><!-- populated by script.js --></div>
+  </section>
+
+  <!-- LEGS -->
+  <section class="container day-block" id="legs">
+    <div class="day-head"><span class="day-emoji">🦵</span><h2 class="section-title">Legs Day</h2></div>
+    <div class="day-intro">
+      <strong>What it trains:</strong> the biggest muscles in the body — quads, hamstrings, glutes, and calves —
+      through three movement patterns: squatting (knee-dominant), hinging (hip-dominant, e.g. Romanian
+      deadlifts), and single-leg work (lunges). Core work gets tacked on at the end, since it's already been
+      working overtime to stabilize every squat and hinge in the session.
+    </div>
+    <div class="exercise-grid" id="legs-grid"><!-- populated by script.js --></div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-name">Uroš Pantelić</p>
+      <p class="footer-tag">Software Engineer · Belgrade, Serbia</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/pantela002" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:pantelicu02@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/urospantelic/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+  </div>
+  <p class="footer-copy">© <span id="year"></span> Uroš Pantelić. Built with plain HTML, CSS &amp; JS.</p>
+</footer>
+
+<script src="gym-data.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
