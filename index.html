@@ -1,306 +1,318 @@
+<!-- ABOUTME: Personal portfolio site for Uros Pantelic (pantelicu.space) -->
+<!-- ABOUTME: About/experience/projects/education, an interactive Belgrade map, and a gym plan section -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Insurance Price Validator — pantelicu.space</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #0f1117;
-      color: #fafafa;
-      min-height: 100vh;
-    }
-
-    header {
-      background: #1a1d27;
-      padding: 16px 40px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid #2e3147;
-    }
-
-    header h1 { font-size: 1.15rem; font-weight: 600; color: #ff4b4b; }
-    header span { font-size: 0.85rem; color: #666; }
-
-    main {
-      display: flex;
-      gap: 0;
-      height: calc(100vh - 57px);
-    }
-
-    .panel {
-      flex: 1;
-      padding: 28px 32px;
-      overflow-y: auto;
-      border-right: 1px solid #2e3147;
-    }
-
-    .panel:last-child { border-right: none; }
-
-    h2 {
-      font-size: 0.95rem;
-      font-weight: 600;
-      color: #aaa;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 20px;
-    }
-
-    pre {
-      background: #1a1d27;
-      border: 1px solid #2e3147;
-      border-radius: 8px;
-      padding: 16px;
-      font-size: 0.78rem;
-      line-height: 1.6;
-      overflow-x: auto;
-      color: #e0e0e0;
-    }
-
-    .input-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 20px;
-    }
-
-    .input-group label {
-      display: block;
-      font-size: 0.78rem;
-      color: #888;
-      margin-bottom: 5px;
-    }
-
-    .input-group input {
-      width: 100%;
-      background: #1a1d27;
-      border: 1px solid #2e3147;
-      border-radius: 6px;
-      color: #fafafa;
-      padding: 8px 12px;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-
-    .input-group input:focus { border-color: #ff4b4b; }
-
-    button {
-      width: 100%;
-      padding: 12px;
-      background: #ff4b4b;
-      color: white;
-      border: none;
-      border-radius: 8px;
-      font-size: 0.95rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: background 0.2s;
-      margin-bottom: 28px;
-    }
-
-    button:hover { background: #e03e3e; }
-
-    .output-section { display: none; }
-
-    .anchor-log {
-      background: #1a1d27;
-      border: 1px solid #2e3147;
-      border-radius: 8px;
-      padding: 14px 16px;
-      font-size: 0.8rem;
-      font-family: monospace;
-      line-height: 1.8;
-      margin-bottom: 20px;
-      color: #ccc;
-      white-space: pre-wrap;
-    }
-
-    .result-json {
-      background: #1a1d27;
-      border: 1px solid #2e3147;
-      border-radius: 8px;
-      padding: 14px 16px;
-      font-size: 0.82rem;
-      font-family: monospace;
-      line-height: 1.7;
-      color: #98d8a0;
-      white-space: pre-wrap;
-    }
-
-    .section-title {
-      font-size: 0.82rem;
-      font-weight: 600;
-      color: #888;
-      text-transform: uppercase;
-      letter-spacing: 0.8px;
-      margin-bottom: 8px;
-    }
-
-    .divider { margin-bottom: 20px; }
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Uroš Pantelić — Software Engineer</title>
+<meta name="description" content="Uroš Pantelić — Software Engineer. Backend, ML infrastructure, and full-stack projects. Belgrade, Serbia." />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👨‍💻</text></svg>" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+<link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
-<header>
-  <h1>🛡️ Insurance Price Validator</h1>
-  <span>pantelicu.space</span>
+<div class="progress-bar" id="progress-bar"></div>
+
+<header class="site-header">
+  <nav class="nav container">
+    <a href="#top" class="brand">UP</a>
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#places">Places</a></li>
+      <li><a href="#gym">Gym</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle color theme" title="Toggle light/dark theme">
+      <span class="icon-sun">☀️</span><span class="icon-moon">🌙</span>
+    </button>
+  </nav>
 </header>
 
-<main>
-  <!-- LEFT: code -->
-  <div class="panel">
-    <h2>solution.py</h2>
-    <pre id="code-display">Loading...</pre>
-  </div>
+<main id="top">
 
-  <!-- RIGHT: input + output -->
-  <div class="panel">
-    <h2>Input</h2>
-
-    <div class="input-grid">
-      <div class="input-group">
-        <label>mtpl</label>
-        <input type="number" id="mtpl" value="400" step="10"/>
+  <!-- HERO / ABOUT -->
+  <section class="hero container" id="about">
+    <div class="hero-text reveal">
+      <p class="eyebrow">Hi, I'm</p>
+      <h1>Uroš Pantelić</h1>
+      <p class="role">Software Engineer — Backend &amp; ML Infrastructure</p>
+      <p class="bio">
+        Electrical Engineering graduate (University of Belgrade, Aug 2026) with industry experience spanning
+        backend systems, ML infrastructure, and large-scale distributed platforms. Interned at
+        <strong>Microsoft</strong> and <strong>Tenstorrent</strong> working on LLM inference and training systems;
+        built production backend services and full-stack applications independently. Passionate about building
+        reliable, scalable software and solving hard engineering problems end to end.
+      </p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="https://github.com/pantela002" target="_blank" rel="noopener">
+          <span class="gh-mark" aria-hidden="true"></span> GitHub
+        </a>
+        <a class="btn btn-ghost" href="mailto:pantelicu02@gmail.com">Email me</a>
+        <a class="btn btn-ghost" href="assets/Uros_Pantelic_CV.pdf" target="_blank" rel="noopener">Download CV</a>
       </div>
-      <div class="input-group">
-        <label>casco_100</label>
-        <input type="number" id="casco_100" value="780" step="10"/>
-      </div>
-      <div class="input-group">
-        <label>limited_casco_100</label>
-        <input type="number" id="limited_casco_100" value="850" step="10"/>
-      </div>
-      <div class="input-group">
-        <label>casco_200</label>
-        <input type="number" id="casco_200" value="950" step="10"/>
-      </div>
-      <div class="input-group">
-        <label>limited_casco_200</label>
-        <input type="number" id="limited_casco_200" value="900" step="10"/>
-      </div>
-      <div class="input-group">
-        <label>casco_500</label>
-        <input type="number" id="casco_500" value="800" step="10"/>
-      </div>
-      <div class="input-group">
-        <label>limited_casco_500</label>
-        <input type="number" id="limited_casco_500" value="700" step="10"/>
+      <ul class="quick-facts">
+        <li>📍 Belgrade, Serbia</li>
+        <li>🎓 University of Belgrade — B.Sc. Electrical Engineering, GPA 9.0/10.0</li>
+        <li>🗣️ Serbian (native) · English (C1) · Turkish (basic)</li>
+      </ul>
+    </div>
+    <div class="hero-avatar reveal">
+      <div class="avatar-ring">
+        <span>UP</span>
       </div>
     </div>
+  </section>
 
-    <button onclick="runValidator()">▶ Run Validator</button>
+  <!-- EXPERIENCE -->
+  <section class="container section" id="experience">
+    <h2 class="section-title">Experience</h2>
+    <div class="timeline">
 
-    <div class="output-section" id="output">
-      <div class="divider">
-        <div class="section-title">Anchor Analysis</div>
-        <div class="anchor-log" id="anchor-log"></div>
+      <article class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-head">
+            <h3>Nextesy</h3>
+            <span class="timeline-date">May 2026 — Aug 2026</span>
+          </div>
+          <p class="timeline-role">Software Engineer Intern, Backend</p>
+          <ul>
+            <li>Designing and implementing a <strong>role-based permission system</strong> for a multi-tenant backend, supporting fine-grained access control across user roles, resources, and organizational scopes.</li>
+            <li>Optimizing permission resolution through <strong>indexed DB queries and query batching</strong> to minimize authorization overhead on high-traffic endpoints.</li>
+            <li>Building an <strong>integration and load testing suite</strong> that verifies access-rule correctness and benchmarks endpoint throughput under concurrent load.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-head">
+            <h3>Tenstorrent</h3>
+            <span class="timeline-date">Feb 2025 — Nov 2025</span>
+          </div>
+          <p class="timeline-role">Machine Learning Intern &amp; Open Source Contributor (TT-XLA)</p>
+          <ul>
+            <li>Enabled <strong>parameter-efficient fine-tuning</strong> (LoRA/DoRA) for LLaMA 3.2 1B by extending training pipelines for scalable multi-device adaptation.</li>
+            <li>Built reproducible training/evaluation pipelines; benchmarked latency, throughput, tokens/sec, and memory utilization across device configurations.</li>
+            <li>Implemented <strong>tensor-parallel inference</strong> for LLaMA 3.1 8B in JAX/Flax, compiled through StableHLO into Tenstorrent's MLIR-based compiler stack (TT-XLA); validated numerical parity against PyTorch/HuggingFace baselines and contributed upstream.</li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="timeline-item reveal">
+        <div class="timeline-dot"></div>
+        <div class="timeline-card">
+          <div class="timeline-head">
+            <h3>Microsoft</h3>
+            <span class="timeline-date">Aug 2024 — Nov 2024</span>
+          </div>
+          <p class="timeline-role">Machine Learning Engineer Intern</p>
+          <ul>
+            <li>Researched selective state-space models (Mamba) and built internal prototypes in PyTorch; constructed a benchmarking harness against transformer baselines (LLaMA/GPT-style).</li>
+            <li>Benchmarked latency, throughput, memory usage, and quality metrics; delivered a technical report that informed model selection and deployment trade-offs.</li>
+          </ul>
+        </div>
+      </article>
+
+    </div>
+
+    <h3 class="subsection-title">Competitions &amp; Hackathons</h3>
+    <div class="badge-row reveal">
+      <div class="badge-card">
+        <span class="badge-medal">🥉</span>
+        <div>
+          <strong>Qualcomm LPCVC 2025, Track 1</strong>
+          <p>3rd Place — image classification under real-world distribution shifts, deployed on Qualcomm AI Hub (Snapdragon 8 Elite QRD). Invited to present at CVPR 2025 (Nashville).</p>
+        </div>
       </div>
-      <div>
-        <div class="section-title">Output</div>
-        <div class="result-json" id="result-json"></div>
+      <div class="badge-card">
+        <span class="badge-medal">🥈</span>
+        <div>
+          <strong>DigiHack Hackathon</strong>
+          <p>2nd Place — predictive maintenance for industrial equipment using sensor data and anomaly detection.</p>
+        </div>
+      </div>
+      <div class="badge-card">
+        <span class="badge-medal">🥈</span>
+        <div>
+          <strong>ASEF Hackathon</strong>
+          <p>2nd Place — air pollution forecasting system for Belgrade using weather-based features and regression models.</p>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section class="container section" id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="project-grid">
+
+      <article class="project-card reveal">
+        <h3>Cloud-Native Distributed Inference Platform</h3>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">WebSockets</span><span class="tag">Docker</span><span class="tag">Redis</span>
+        </div>
+        <ul>
+          <li>Distributed job orchestration system for CNN inference, modeled on cloud-native scheduler architecture (Kubernetes-style job queues with pluggable executors).</li>
+          <li>Worker pool management with dynamic scaling, DAG-based dependency resolution, task prioritization, and automatic fault recovery with configurable retry logic.</li>
+          <li>Real-time observability dashboard (WebSockets) exposing per-node load, task throughput, queue depth, and retry rates; near-linear scaling under varying concurrency.</li>
+        </ul>
+      </article>
+
+      <article class="project-card reveal">
+        <h3>AI Agent Orchestrator <span class="project-year">2026</span></h3>
+        <div class="tag-row">
+          <span class="tag">Python</span><span class="tag">Claude Code</span><span class="tag">tmux</span><span class="tag">Git</span>
+        </div>
+        <ul>
+          <li>CLI and daemon that runs multiple LLM coding agents in parallel, each in its own git worktree and tmux session, pulling tasks from a shared queue with per-task locking.</li>
+          <li>Full task lifecycle (dispatch, park, resume, cancel): parking commits work-in-progress and releases the lock so a task can resume on any idle worker without losing state.</li>
+          <li>Deterministic recovery from outages and self-healing of leaked locks, plus a web UI board and per-worker logs for monitoring running agents.</li>
+        </ul>
+      </article>
+
+      <article class="project-card reveal">
+        <h3>Study Feed <span class="project-year">2026</span></h3>
+        <div class="tag-row">
+          <span class="tag">Flutter</span><span class="tag">Dart</span><span class="tag">Riverpod</span><span class="tag">Drift</span><span class="tag">Claude API</span>
+        </div>
+        <ul>
+          <li>Mobile app that turns course materials (PDFs, text, images, YouTube links) into summaries, quizzes, and short educational character dialogs, studied through a vertical TikTok-style feed.</li>
+          <li>Content pipeline built around the Claude API and ElevenLabs text-to-speech, with word-synced captions timed from the TTS output and cached background video loops.</li>
+          <li>Local-first with a Drift (SQLite) database and a spaced-repetition review ladder with streaks; optional Google sign-in backs up progress to Firebase.</li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- PLACES / MAP -->
+  <section class="container section" id="places">
+    <h2 class="section-title">Find Me Around Belgrade</h2>
+    <p class="section-subtitle">An interactive map of where I actually spend my time. Click a pin, or click a card.</p>
+
+    <div class="map-layout">
+      <div id="map" class="map reveal" role="application" aria-label="Map of Belgrade with pinned locations"></div>
+      <ul class="place-list reveal" id="place-list"><!-- populated by script.js --></ul>
+    </div>
+  </section>
+
+  <!-- GYM -->
+  <section class="container section" id="gym">
+    <h2 class="section-title">Gym — Weekly Split</h2>
+    <p class="section-subtitle">Currently running a 6-day Push / Pull / Legs split, twice through, with Sunday off (usually a run at Ada Ciganlija instead).</p>
+
+    <div class="gym-grid">
+
+      <article class="gym-card reveal">
+        <header><span class="gym-day">Day 1</span><h3>Push A</h3><span class="gym-focus">Chest · Shoulders · Triceps</span></header>
+        <ul>
+          <li><span>Barbell Bench Press</span><span>4×6–8</span></li>
+          <li><span>Overhead Press</span><span>3×8–10</span></li>
+          <li><span>Incline Dumbbell Press</span><span>3×10</span></li>
+          <li><span>Lateral Raises</span><span>3×12–15</span></li>
+          <li><span>Triceps Pushdown</span><span>3×12–15</span></li>
+          <li><span>Dips</span><span>3×AMRAP</span></li>
+        </ul>
+      </article>
+
+      <article class="gym-card reveal">
+        <header><span class="gym-day">Day 2</span><h3>Pull A</h3><span class="gym-focus">Back · Biceps</span></header>
+        <ul>
+          <li><span>Deadlift</span><span>3×5</span></li>
+          <li><span>Pull-ups / Lat Pulldown</span><span>4×8–10</span></li>
+          <li><span>Barbell Row</span><span>3×8–10</span></li>
+          <li><span>Face Pulls</span><span>3×15</span></li>
+          <li><span>Barbell Curl</span><span>3×10</span></li>
+          <li><span>Hammer Curl</span><span>3×12</span></li>
+        </ul>
+      </article>
+
+      <article class="gym-card reveal">
+        <header><span class="gym-day">Day 3</span><h3>Legs A</h3><span class="gym-focus">Quads · Hamstrings · Calves</span></header>
+        <ul>
+          <li><span>Back Squat</span><span>4×6–8</span></li>
+          <li><span>Romanian Deadlift</span><span>3×8–10</span></li>
+          <li><span>Leg Press</span><span>3×10–12</span></li>
+          <li><span>Leg Curl</span><span>3×12</span></li>
+          <li><span>Calf Raises</span><span>4×15</span></li>
+          <li><span>Plank</span><span>3×45s</span></li>
+        </ul>
+      </article>
+
+      <article class="gym-card reveal">
+        <header><span class="gym-day">Day 4</span><h3>Push B</h3><span class="gym-focus">Chest · Shoulders · Triceps</span></header>
+        <ul>
+          <li><span>Incline Barbell Press</span><span>4×6–8</span></li>
+          <li><span>Dumbbell Shoulder Press</span><span>3×8–10</span></li>
+          <li><span>Cable Fly</span><span>3×12–15</span></li>
+          <li><span>Arnold Press</span><span>3×10</span></li>
+          <li><span>Skull Crushers</span><span>3×12</span></li>
+          <li><span>Cable Lateral Raise</span><span>3×15</span></li>
+        </ul>
+      </article>
+
+      <article class="gym-card reveal">
+        <header><span class="gym-day">Day 5</span><h3>Pull B</h3><span class="gym-focus">Back · Biceps</span></header>
+        <ul>
+          <li><span>Weighted Pull-ups</span><span>4×6–8</span></li>
+          <li><span>Seated Cable Row</span><span>3×10</span></li>
+          <li><span>T-Bar Row</span><span>3×10</span></li>
+          <li><span>Rear Delt Fly</span><span>3×15</span></li>
+          <li><span>Preacher Curl</span><span>3×10</span></li>
+          <li><span>Shrugs</span><span>3×12</span></li>
+        </ul>
+      </article>
+
+      <article class="gym-card reveal">
+        <header><span class="gym-day">Day 6</span><h3>Legs B</h3><span class="gym-focus">Quads · Hamstrings · Calves</span></header>
+        <ul>
+          <li><span>Front Squat</span><span>4×6–8</span></li>
+          <li><span>Walking Lunges</span><span>3×12/leg</span></li>
+          <li><span>Leg Extension</span><span>3×12–15</span></li>
+          <li><span>Seated Leg Curl</span><span>3×12</span></li>
+          <li><span>Standing Calf Raise</span><span>4×15</span></li>
+          <li><span>Hanging Leg Raise</span><span>3×15</span></li>
+        </ul>
+      </article>
+
+      <article class="gym-card gym-card-rest reveal">
+        <header><span class="gym-day">Day 7</span><h3>Rest</h3><span class="gym-focus">Recovery</span></header>
+        <ul>
+          <li><span>Easy run — Ada Ciganlija loop 🏃</span><span>or full rest</span></li>
+        </ul>
+      </article>
+
+    </div>
+  </section>
+
 </main>
 
-<script>
-// ── solution.py logic ported to JS ──────────────────────────────────────────
+<footer class="site-footer" id="contact">
+  <div class="container footer-inner">
+    <div>
+      <p class="footer-name">Uroš Pantelić</p>
+      <p class="footer-tag">Software Engineer · Belgrade, Serbia</p>
+    </div>
+    <div class="footer-links">
+      <a href="https://github.com/pantela002" target="_blank" rel="noopener">GitHub</a>
+      <a href="mailto:pantelicu02@gmail.com">Email</a>
+      <a href="#" id="linkedin-link" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+    <button class="back-to-top" id="back-to-top" aria-label="Back to top">↑</button>
+  </div>
+  <p class="footer-copy">© <span id="year"></span> Uroš Pantelić. Built with plain HTML, CSS &amp; JS.</p>
+</footer>
 
-const RATIOS = {
-  "casco_100":         [1.0000, 0.9100, 1.2000],
-  "casco_200":         [0.8500, 0.8300, 0.9000],
-  "casco_500":         [0.8000, 0.7800, 0.8200],
-  "limited_casco_100": [0.7500, 0.7300, 0.7700],
-  "limited_casco_200": [0.6375, 0.6100, 0.7200],
-  "limited_casco_500": [0.5625, 0.5000, 0.6000],
-  "mtpl":              [0.3600, 0.2600, 0.4600],
-};
-
-const LC_MTPL_TARGET = 9 / 5;
-const C_LC_TARGET = 12 / 9;
-
-function validateAndFix(prices) {
-  const fixed = { ...prices };
-  const issues = [];
-  let anchorLog = "";
-
-  let bestAnchor = null;
-  let minIssues = Infinity;
-  let minMSE = Infinity;
-
-  for (const anchor in RATIOS) {
-    const [exp, , ] = RATIOS[anchor];
-    const X = prices[anchor] / exp;
-
-    const candidateIssues = [];
-    const candidate = { ...prices };
-
-    for (const k in RATIOS) {
-      if (k === anchor) continue;
-      const [e, l, h] = RATIOS[k];
-      if (!(l * X <= prices[k] && prices[k] <= h * X)) {
-        candidateIssues.push(`${k} adjusted from ${prices[k]} to ${(e * X).toFixed(2)}`);
-        candidate[k] = e * X;
-      }
-    }
-
-    const lcMtpl = candidate["limited_casco_100"] / candidate["mtpl"];
-    const cLc   = candidate["casco_100"] / candidate["limited_casco_100"];
-    const mse   = ((lcMtpl - LC_MTPL_TARGET) ** 2 + (cLc - C_LC_TARGET) ** 2) / 2;
-
-    anchorLog += `Anchor=${anchor} (X=${X.toFixed(2)}): ${candidateIssues.length} issue(s), MSE=${mse.toFixed(4)}\n`;
-    candidateIssues.forEach(m => { anchorLog += `  - ${m}\n`; });
-
-    if (candidateIssues.length < minIssues ||
-        (candidateIssues.length === minIssues && mse < minMSE)) {
-      minIssues = candidateIssues.length;
-      minMSE = mse;
-      bestAnchor = anchor;
-    }
-  }
-
-  const X = prices[bestAnchor] / RATIOS[bestAnchor][0];
-  for (const k in RATIOS) {
-    if (k === bestAnchor) continue;
-    const [exp, lo, hi] = RATIOS[k];
-    if (!(lo * X <= prices[k] && prices[k] <= hi * X)) {
-      const old = fixed[k];
-      fixed[k] = parseFloat((exp * X).toFixed(2));
-      issues.push(`${k} adjusted from ${old} to ${fixed[k]} (anchor: ${bestAnchor}, X=${X.toFixed(2)})`);
-    }
-  }
-
-  return { fixed_prices: fixed, issues, anchorLog };
-}
-
-// ── UI ──────────────────────────────────────────────────────────────────────
-
-function runValidator() {
-  const keys = ["mtpl", "limited_casco_100", "limited_casco_200", "limited_casco_500",
-                "casco_100", "casco_200", "casco_500"];
-  const prices = {};
-  for (const k of keys) prices[k] = parseFloat(document.getElementById(k).value);
-
-  const { fixed_prices, issues, anchorLog } = validateAndFix(prices);
-
-  document.getElementById("anchor-log").textContent = anchorLog.trimEnd();
-  document.getElementById("result-json").textContent =
-    JSON.stringify({ fixed_prices, issues }, null, 2);
-  document.getElementById("output").style.display = "block";
-}
-
-// ── Load code display ────────────────────────────────────────────────────────
-
-fetch("solution.py")
-  .then(r => r.text())
-  .then(t => { document.getElementById("code-display").textContent = t; })
-  .catch(() => { document.getElementById("code-display").textContent = "Could not load solution.py"; });
-</script>
-
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+<script src="script.js"></script>
 </body>
 </html>
